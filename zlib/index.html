@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Document</title>
+    <script>
+        document.documentElement.style.fontSize = window.innerWidth / 8.1 + 'px'
+    </script>
+    <link rel="stylesheet" href="swiper/swiper.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="swiper/swiper.min.js"></script>
+</head>
+
+<body>
+    <div class="wrap">
+        <header class="header">
+            <span>〈</span>
+            <span class="pages">
+                <b class="active">大盘排片</b>
+                <b>城市排片</b>
+            </span>
+            <span>ღ</span>
+        </header>
+        <main class="main">
+            <div class="swiper1 swiper-container">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide pag pag1">
+                        <div class="conc">
+                            <div>
+                                <span>前一天</span>
+                                <span>2017年11月08日</span>
+                                <span>后一天</span>
+                            </div>
+                            <div>
+                                <span>全国</span>
+                                <span><b>全时段</b></span>
+                                <span>场次</span>
+                            </div>
+                        </div>
+                        <div class="canv">
+                            <canvas id="can" width="250" height="250"></canvas>
+                        </div>
+                        <div class="content">
+                            <h3>
+                                <span>影片</span>
+                                <span>场次占比</span>
+                                <span>场次</span>
+                                <span>票房（万）</span>
+                            </h3>
+                            <li>
+                                <span>雷神3：诸神黄昏
+                                    <p>上映6天 4.45亿</p>
+                                </span>
+                                <span>43.2%</span>
+                                <span>103,489</span>
+                                <span>1102.34</span>
+                            </li>
+                            <li>
+                                <span>雷神3：诸神黄昏
+                                    <p>上映6天 4.45亿</p>
+                                </span>
+                                <span>43.2%</span>
+                                <span>103,489</span>
+                                <span>1102.34</span>
+                            </li>
+                            <li>
+                                <span>雷神3：诸神黄昏
+                                    <p>上映6天 4.45亿</p>
+                                </span>
+                                <span>43.2%</span>
+                                <span>103,489</span>
+                                <span>1102.34</span>
+                            </li>
+                            <li>
+                                <span>雷神3：诸神黄昏
+                                    <p>上映6天 4.45亿</p>
+                                </span>
+                                <span>43.2%</span>
+                                <span>103,489</span>
+                                <span>1102.34</span>
+                            </li>
+                            <li>
+                                <span>雷神3：诸神黄昏
+                                    <p>上映6天 4.45亿</p>
+                                </span>
+                                <span>43.2%</span>
+                                <span>103,489</span>
+                                <span>1102.34</span>
+                            </li>
+                            <li>
+                                <span>雷神3：诸神黄昏
+                                    <p>上映6天 4.45亿</p>
+                                </span>
+                                <span>43.2%</span>
+                                <span>103,489</span>
+                                <span>1102.34</span>
+                            </li>
+                        </div>
+                    </div>
+                    <div class="swiper-slide pag">2</div>
+                </div>
+            </div>
+        </main>
+
+    </div>
+</body>
+<script>
+    var pages = document.querySelectorAll('.pages b')
+    var swiper1 = new Swiper('.swiper1', {
+        on: {
+            slideChangeTransitionStart: function() {
+                console.log(this.activeIndex)
+                pages.forEach(function(val) {
+                    val.classList.remove('active')
+                })
+                pages[this.activeIndex].classList.add('active')
+            }
+        }
+    })
+    pages.forEach(function(val, i) {
+        val.onclick = function() {
+            swiper1.slideTo(i)
+        }
+    })
+
+    function quan(opt) {
+        var can = document.querySelector('canvas')
+        var ctx = can.getContext('2d');
+        var deg = Math.PI / 180
+
+        var preDeg = -90 * deg;
+        ctx.beginPath()
+        ctx.arc(125, 125, 120, preDeg, preDeg + opt['#41aeef'] / 100 * 360 * deg)
+        ctx.strokeStyle = '#41aeef33'
+        ctx.lineWidth = 10
+        ctx.stroke()
+        ctx.lineWidth = 50;
+        for (var i in opt) {
+            console.log(opt[i])
+            ctx.beginPath()
+            ctx.arc(125, 125, 90, preDeg, preDeg + opt[i] / 100 * 360 * deg)
+            ctx.strokeStyle = i
+            ctx.stroke()
+            preDeg = preDeg + opt[i] / 100 * 360 * deg
+        }
+        ctx.beginPath()
+        ctx.arc(125, 125, 70, 0, 360 * deg)
+        ctx.strokeStyle = '#eee4'
+        ctx.lineWidth = 10
+        ctx.stroke()
+        console.log(can)
+    }
+    quan({
+        "#41aeef": 40,
+        "#62d0f3": 20,
+        "#5cc2ac": 15,
+        "#6bd68e": 10,
+        "#feeb39": 6,
+        "#4c89f3": 5,
+        "#a172b6": 2,
+        "#fc767f": 1,
+        "#fdaa40": 1
+    })
+</script>
+
+</html>
